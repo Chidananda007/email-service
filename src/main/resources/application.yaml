@@ -1,0 +1,26 @@
+spring:
+    application:
+        name: email-service
+    cloud:
+        config:
+        uri: http://localhost:8888
+        fail-fast: true
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: chidananda676gmail.com
+      password: my-password
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+          debug: true
+    mailgun:
+      api:
+        key: your-mailgun-api-key
+      domain: your-mailgun-domain
+      sender: your-email@example.com
+      admin:
+        email: admin@example.com https://api.mailgun.net
