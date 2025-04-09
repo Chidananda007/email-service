@@ -5,7 +5,7 @@ import com.email_service.dto.EmailProvider;
 
 public interface EmailService {
 
-    boolean support(EmailProvider emailProvider);
+  boolean support(EmailProvider emailProvider);
 
-    EmailDto.EmailResponse sendEmail(EmailDto.EmailRequest emailRequest);
+  EmailDto.EmailResponse sendEmail(EmailDto.EmailRequest emailRequest);
 }

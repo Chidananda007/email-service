@@ -17,10 +17,3 @@ spring:
             starttls:
               enable: true
           debug: true
-    mailgun:
-      api:
-        key: your-mailgun-api-key
-      domain: your-mailgun-domain
-      sender: your-email@example.com
-      admin:
-        email: admin@example.com https://api.mailgun.net
