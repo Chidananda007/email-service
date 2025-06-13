@@ -1,12 +1,17 @@
 package com.email_service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
 public record EmailDto() {
 
   public record EmailRequest(
-      String name, String receiver, String userEmail, String subject, String message) {}
+      String name,
+      String receiver,
+      @JsonProperty("user_email") String userEmail,
+      String message,
+      String mobile) {}
 
   @Builder
   public record EmailResponse(
