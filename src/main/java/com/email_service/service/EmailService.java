@@ -7,7 +7,7 @@ public interface EmailService {
 
   boolean support(EmailProvider emailProvider);
 
-  EmailDto.EmailResponse sendEmail(EmailDto.EmailRequest emailRequest);
+  EmailDto.EmailResponse contactUsByEmail(EmailDto.EmailRequest emailRequest);
 
   EmailDto.BulkEmailResponse sendBulkEmail(EmailDto.BulkEmailRequest bulkEmailRequest);
 }

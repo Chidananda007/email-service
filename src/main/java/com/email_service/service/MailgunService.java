@@ -33,7 +33,7 @@ public abstract class MailgunService implements EmailService {
   }
 
   @Override
-  public EmailDto.EmailResponse sendEmail(EmailDto.EmailRequest emailRequest) {
+  public EmailDto.EmailResponse contactUsByEmail(EmailDto.EmailRequest emailRequest) {
     String url = "https://api.mailgun.net/v3/" + domain + "/messages";
 
     String subject = "New Contact Form Submission";

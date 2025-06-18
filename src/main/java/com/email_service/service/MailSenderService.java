@@ -5,7 +5,6 @@ import com.email_service.dto.EmailProvider;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +30,7 @@ public class MailSenderService implements EmailService {
   }
 
   @Override
-  public EmailDto.EmailResponse sendEmail(EmailDto.EmailRequest emailRequest) {
+  public EmailDto.EmailResponse contactUsByEmail(EmailDto.EmailRequest emailRequest) {
     try {
       SimpleMailMessage message = getSimpleMailMessage(emailRequest);
       this.subject = "New Contact Request form %s".formatted(emailRequest.name());
@@ -43,9 +42,7 @@ public class MailSenderService implements EmailService {
               emailRequest.message(),
               emailRequest.mobile());
       emailSender.send(message);
-      log.info(
-          "Email sent successfully to: {}",
-          Objects.nonNull(message.getTo()) ? message.getTo() : null);
+      log.info("Email sent successfully to: {}", (Object) message.getTo());
       return new EmailDto.EmailResponse(emailRequest.receiver(), "success", null, null);
     } catch (Exception e) {
       log.error("Failed to send email :{}", e.getMessage(), e);
@@ -62,14 +59,20 @@ public class MailSenderService implements EmailService {
             "Dear %s,\n\n\t%s\n\nRegards,\n%s",
             bulkEmailRequest.name(), bulkEmailRequest.message(), "Chidananda Bazar");
     for (String receiver : bulkEmailRequest.receivers()) {
-      EmailDto.EmailRequest singleRequest =
-          new EmailDto.EmailRequest(
-              bulkEmailRequest.name(),
-              receiver,
-              bulkEmailRequest.userEmail(),
-              bulkEmailRequest.message(),
-              bulkEmailRequest.mobile());
-      results.add(sendEmail(singleRequest));
+      try {
+        SimpleMailMessage message =
+            getSimpleMailMessage(
+                new EmailDto.EmailRequest(
+                    bulkEmailRequest.name(),
+                    receiver,
+                    bulkEmailRequest.userEmail(),
+                    bulkEmailRequest.message(),
+                    bulkEmailRequest.mobile()));
+        emailSender.send(message);
+        results.add(new EmailDto.EmailResponse(receiver, "success", null, null));
+      } catch (Exception e) {
+        results.add(new EmailDto.EmailResponse(receiver, "Failed", e.getMessage(), null));
+      }
     }
     return new EmailDto.BulkEmailResponse(results);
   }

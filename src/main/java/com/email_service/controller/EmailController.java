@@ -17,7 +17,7 @@ public class EmailController {
   @PostMapping("/contact-us")
   @ResponseStatus(HttpStatus.ACCEPTED)
   public EmailDto.EmailResponse sendEmail(@Valid @RequestBody EmailDto.EmailRequest emailRequest) {
-    return utilService.validateProvider().sendEmail(emailRequest);
+    return utilService.validateProvider().contactUsByEmail(emailRequest);
   }
 
   @PostMapping("/bulk-email")
