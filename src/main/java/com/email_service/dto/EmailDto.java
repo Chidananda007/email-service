@@ -3,6 +3,7 @@ package com.email_service.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import javax.validation.constraints.NotEmpty;
+import lombok.Builder;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,6 +24,7 @@ public record EmailDto() {
       String message,
       String mobile) {}
 
+  @Builder
   public record EmailResponse(
       String receiver, String status, String message, String providerResponse) {}
 
