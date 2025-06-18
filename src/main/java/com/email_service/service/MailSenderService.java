@@ -60,7 +60,7 @@ public class MailSenderService implements EmailService {
     this.textMessage =
         String.format(
             "Dear %s,\n\n\t%s\n\nRegards,\n%s",
-            bulkEmailRequest.name(), bulkEmailRequest.message(), bulkEmailRequest.userEmail());
+            bulkEmailRequest.name(), bulkEmailRequest.message(), "Chidananda Bazar");
     for (String receiver : bulkEmailRequest.receivers()) {
       EmailDto.EmailRequest singleRequest =
           new EmailDto.EmailRequest(
