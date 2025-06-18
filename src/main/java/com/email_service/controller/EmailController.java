@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class EmailController {
 
-  private UtilService utilService;
+  private final UtilService utilService;
 
   @PostMapping("/contact-us")
   @ResponseStatus(HttpStatus.ACCEPTED)
