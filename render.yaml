@@ -2,7 +2,5 @@ services:
   - type: web
     name: email-service
     env: docker
-    buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar build/libs/app.jar
-    dockerfilePath: Dockerfile
     plan: free
+    dockerfilePath: Dockerfile
