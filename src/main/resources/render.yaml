@@ -1,7 +1,6 @@
 services:
   - type: web
-    name: my-app
+    name: email-service
     env: java
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar build/libs/app.jar
-    rootDir: src/backend
