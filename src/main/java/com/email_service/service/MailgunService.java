@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class MailgunService implements EmailService {
+public abstract class MailgunService implements EmailService {
 
   @Value("${mailgun.api.key:}")
   private String apiKey;

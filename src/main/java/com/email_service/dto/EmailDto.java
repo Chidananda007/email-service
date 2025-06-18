@@ -1,30 +1,39 @@
 package com.email_service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
+import java.util.List;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
 public record EmailDto() {
 
   public record EmailRequest(
-      String name,
-      String receiver,
+      @NotNull String name,
+      @NotNull String receiver,
       @JsonProperty("user_email") String userEmail,
       String message,
       String mobile) {}
 
-  @Builder
+  public record BulkEmailRequest(
+      @NotNull String subject,
+      @NotNull @NotEmpty List<String> receivers,
+      String name,
+      @JsonProperty("user_email") String userEmail,
+      String message,
+      String mobile) {}
+
   public record EmailResponse(
       String receiver, String status, String message, String providerResponse) {}
 
+  public record BulkEmailResponse(List<EmailResponse> results) {}
+
   @Data
-  @Builder
   public static class EmailTo {
     private String email;
     private String name;
   }
 
-  @Builder
   @Data
   public static class EmailFrom {
     private String email;
